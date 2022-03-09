@@ -1,1 +1,11 @@
 
+.quizSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.answerchoices > *{
+  height: 50px;
+  width: 50px;
+  border: 1px black solid;
+}

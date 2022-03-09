@@ -1,3 +1,14 @@
+const question = document.querySelector(".question");
+const answerchoices = document.querySelector(".answerchoices");
+const choiceA = document.querySelector(".choiceA");
+const choiceB = document.querySelector(".choiceB");
+const choiceC = document.querySelector(".choiceC");
+const start = document.querySelector(".start");
+const quizSection = document.querySelector(".quizSection")
+
+let activeQuestion = 0;
+
+
 
 let questions = [
 
@@ -38,5 +49,13 @@ let questions = [
   },
 
 ]
+//
+function renderQuestion() {
+  let q = questions[activeQuestion]
+  choiceA.innerHTML = q.choiceA;
+  choiceB.innerHTML = q.choiceB;
+  choiceC.innerHTML = q.choiceC;
+  question.innerHTML = q.question;
+}
 
-console.log(questions[1].question)
+renderQuestion()
