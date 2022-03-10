@@ -9,12 +9,16 @@ const quizSection = document.querySelector(".quizSection");
 const choices = document.querySelectorAll(".choice");
 const answerSection = document.querySelector(".answerSection");
 const counter = document.querySelector(".counter");
+const timerBar = document.querySelector(".timerBar");
+console.log(timerBar)
 
 
 
 let activeQuestion = 0;
 let count = 0;
 let timeUp = 10;
+let timerBarLength = 800;
+let unitBar = timerBarLength / timeUp;
 let dragged;
 
 
@@ -61,19 +65,26 @@ let questions = [
 ]
 
 
+function timerBarFunction() {
+  if(count < timeUp) {
+    timerBar.style.width = `${count*unitBar}px`
+  } else {
+    count = 0;
+  }
+}
+
+setInterval(timerBarFunction, 1000)
+
 function progressBar() {
   for(var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
     answerSection.innerHTML += `<div class="progress-boxes" id=${questionIndex}></div>`
   }
 }
 
-
-
-
 function counterFunction() {
   if(count <= timeUp) {
     counter.innerHTML = count;
-    count++
+    count++;
   } else {
     count = 0;
   }

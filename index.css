@@ -34,8 +34,10 @@ body {
   margin: 10px;
 }
 
-.timeBar {
-  height: 100px;
-  width: 800px;
+.timerBar {
+  height: 5px;
+  /* width: 800px; */
+  color: blue;
   background-color: purple;
+  border: 1px black solid;
 }
