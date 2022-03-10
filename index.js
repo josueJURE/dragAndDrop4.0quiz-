@@ -1,10 +1,13 @@
 const question = document.querySelector(".question");
 const answerchoices = document.querySelector(".answerchoices");
+const allChoices = Array.from(document.querySelector(".answerchoices").children)
 const choiceA = document.querySelector(".choiceA");
 const choiceB = document.querySelector(".choiceB");
 const choiceC = document.querySelector(".choiceC");
 const start = document.querySelector(".start");
-const quizSection = document.querySelector(".quizSection")
+const quizSection = document.querySelector(".quizSection");
+const choices = document.querySelectorAll(".choice");
+
 
 let activeQuestion = 0;
 
@@ -56,6 +59,50 @@ function renderQuestion() {
   choiceB.innerHTML = q.choiceB;
   choiceC.innerHTML = q.choiceC;
   question.innerHTML = q.question;
+  // document.body.style.backgroundImage = q.questionImg
 }
 
 renderQuestion()
+
+question.addEventListener("dragstart", function() {
+  console.log("start")
+});
+
+question.addEventListener("dragend", function() {
+  console.log('end')
+});
+
+allChoices.forEach((choice) => {
+  choice.addEventListener("dragover", dragOver)
+});
+
+allChoices.forEach(choice => {
+  choice.addEventListener("dragenter", dragEnter)
+});
+
+allChoices.forEach(choice => {
+  choice.addEventListener("dragleave", dragLeave)
+});
+
+allChoices.forEach(choice => {
+  choice.addEventListener("drop", drop)
+})
+
+
+function dragOver() {
+  console.log("dragOver")
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  console.log("has entered");
+}
+
+function dragLeave() {
+  console.log("has left")
+}
+
+function drop() {
+  e.preventDefault()
+  console.log("dropped")
+}

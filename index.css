@@ -1,11 +1,21 @@
 
+body {
+  background-repeat: no-repeat;: 
+}
+
+
 .quizSection {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
+.question,
 .answerchoices > *{
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   border: 1px black solid;
+}
+
+.answerchoices > *{
+  margin-bottom: 15px;
 }
