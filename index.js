@@ -1,4 +1,4 @@
-const question = document.querySelector(".question");
+const questionQuiz = document.querySelector(".question");
 const answerchoices = document.querySelector(".answerchoices");
 const allChoices = Array.from(document.querySelector(".answerchoices").children)
 const choiceA = document.querySelector(".choiceA");
@@ -7,9 +7,12 @@ const choiceC = document.querySelector(".choiceC");
 const start = document.querySelector(".start");
 const quizSection = document.querySelector(".quizSection");
 const choices = document.querySelectorAll(".choice");
+const answerSection = document.querySelector(".answerSection");
 
 
 let activeQuestion = 0;
+let dragged;
+
 
 
 
@@ -52,23 +55,38 @@ let questions = [
   },
 
 ]
+
+
+function progressBar() {
+  for(var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
+    answerSection.innerHTML += `<div class="progress-boxes" id=${questionIndex}></div>`
+  }
+}
+
+progressBar()
 //
 function renderQuestion() {
   let q = questions[activeQuestion]
   choiceA.innerHTML = q.choiceA;
   choiceB.innerHTML = q.choiceB;
   choiceC.innerHTML = q.choiceC;
-  question.innerHTML = q.question;
+  questionQuiz.innerHTML = q.question;
   // document.body.style.backgroundImage = q.questionImg
 }
 
 renderQuestion()
 
-question.addEventListener("dragstart", function() {
-  console.log("start")
+questionQuiz.addEventListener("drag", function(e) {
+
+})
+
+questionQuiz.addEventListener("dragstart", function(e) {
+  console.log("start");
+  dragged = e.target;
+  console.log(dragged.innerHTML)
 });
 
-question.addEventListener("dragend", function() {
+questionQuiz.addEventListener("dragend", function() {
   console.log('end')
 });
 
@@ -89,20 +107,22 @@ allChoices.forEach(choice => {
 })
 
 
-function dragOver() {
-  console.log("dragOver")
+function dragOver(e) {
+  e.preventDefault()
+  console.log("dragover")
 }
 
 function dragEnter(e) {
   e.preventDefault();
-  console.log("has entered");
+  console.log("dragenter");
 }
 
 function dragLeave() {
-  console.log("has left")
+  console.log("dragleave")
 }
 
-function drop() {
+function drop(e) {
   e.preventDefault()
-  console.log("dropped")
+  if(parseInt(e.target.innerHTML) !== questions[activeQuestion].correctAnswer) return;
+  e.target.appendChild(dragged)
 }

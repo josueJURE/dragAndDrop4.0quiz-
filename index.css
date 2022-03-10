@@ -1,6 +1,16 @@
 
 body {
-  background-repeat: no-repeat;: 
+  background-repeat: no-repeat;:
+}
+
+.answerchoices > *{
+  margin-bottom: 15px;
+}
+
+.answerSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
 }
 
 
@@ -16,6 +26,16 @@ body {
   border: 1px black solid;
 }
 
-.answerchoices > *{
-  margin-bottom: 15px;
+.progress-boxes {
+  height: 30px;
+  width: 30px;
+  color: grey;
+  background-color: grey;
+  margin: 10px;
+}
+
+.timeBar {
+  height: 10px;
+  width: 800px;
+  background-color: purple;
 }
