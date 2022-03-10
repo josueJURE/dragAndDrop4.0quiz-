@@ -8,9 +8,13 @@ const start = document.querySelector(".start");
 const quizSection = document.querySelector(".quizSection");
 const choices = document.querySelectorAll(".choice");
 const answerSection = document.querySelector(".answerSection");
+const counter = document.querySelector(".counter");
+
 
 
 let activeQuestion = 0;
+let count = 0;
+let timeUp = 10;
 let dragged;
 
 
@@ -63,7 +67,19 @@ function progressBar() {
   }
 }
 
-progressBar()
+
+
+
+function counterFunction() {
+  if(count <= timeUp) {
+    counter.innerHTML = count;
+    count++
+  } else {
+    count = 0;
+  }
+}
+
+setInterval(counterFunction, 1000);
 //
 function renderQuestion() {
   let q = questions[activeQuestion]

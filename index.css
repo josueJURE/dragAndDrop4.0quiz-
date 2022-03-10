@@ -35,7 +35,7 @@ body {
 }
 
 .timeBar {
-  height: 10px;
+  height: 100px;
   width: 800px;
   background-color: purple;
 }
