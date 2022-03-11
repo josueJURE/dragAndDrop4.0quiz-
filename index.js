@@ -1,5 +1,5 @@
 const questionQuiz = document.querySelector(".question");
-const answerchoices = document.querySelector(".answerchoices");
+const answerChoices = document.querySelector(".answerchoices");
 const allChoices = Array.from(document.querySelector(".answerchoices").children)
 const choiceA = document.querySelector(".choiceA");
 const choiceB = document.querySelector(".choiceB");
@@ -10,7 +10,7 @@ const choices = document.querySelectorAll(".choice");
 const answerSection = document.querySelector(".answerSection");
 const counter = document.querySelector(".counter");
 const timerBar = document.querySelector(".timerBar");
-console.log(timerBar)
+console.log(allChoices)
 
 
 
@@ -65,6 +65,7 @@ let questions = [
 ]
 
 
+
 function timerBarFunction() {
   if(count < timeUp) {
     timerBar.style.width = `${count*unitBar}px`
@@ -80,6 +81,8 @@ function progressBar() {
     answerSection.innerHTML += `<div class="progress-boxes" id=${questionIndex}></div>`
   }
 }
+
+progressBar();
 
 function counterFunction() {
   if(count <= timeUp) {
@@ -150,6 +153,14 @@ function dragLeave() {
 
 function drop(e) {
   e.preventDefault()
-  if(parseInt(e.target.innerHTML) !== questions[activeQuestion].correctAnswer) return;
-  e.target.appendChild(dragged)
+  if(parseInt(e.target.innerHTML) !== questions[activeQuestion].correctAnswer) {
+    return
+  } else {
+    e.target.appendChild(dragged)
+    correctAnswer();
+  }
+}
+
+function correctAnswer() {
+  document.getElementById(activeQuestion).style.backgroundColor = "green";
 }
