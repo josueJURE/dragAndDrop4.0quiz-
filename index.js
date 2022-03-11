@@ -154,7 +154,7 @@ function dragLeave() {
 function drop(e) {
   e.preventDefault()
   if(parseInt(e.target.innerHTML) !== questions[activeQuestion].correctAnswer) {
-    return
+    wrongAnswer();
   } else {
     e.target.appendChild(dragged)
     correctAnswer();
@@ -163,4 +163,7 @@ function drop(e) {
 
 function correctAnswer() {
   document.getElementById(activeQuestion).style.backgroundColor = "green";
+}
+function wrongAnswer() {
+  document.getElementById(activeQuestion).style.backgroundColor = "red";
 }
