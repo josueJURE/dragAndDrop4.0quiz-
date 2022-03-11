@@ -10,7 +10,8 @@ const choices = document.querySelectorAll(".choice");
 const answerSection = document.querySelector(".answerSection");
 const counter = document.querySelector(".counter");
 const timerBar = document.querySelector(".timerBar");
-const finalScore = document.querySelector("finalScore");
+const finalScore = document.querySelector(".finalScore");
+const parent = document.querySelector(".parent")
 console.log(answerSection)
 
 
@@ -67,6 +68,11 @@ let timeUp = 10;
 let timerBarLength = 800;
 let unitBar = timerBarLength / timeUp;
 let dragged;
+
+start.addEventListener("click", function() {
+  start.style.visibility = "hidden";
+  parent.style.visibility = "visible";
+})
 
 
 function timerBarFunction() {
@@ -183,8 +189,6 @@ function nextQuestion() {
     renderScore();
   }
 }
-
-
 
 function renderScore() {
   finalScore.innerHTML = score;
