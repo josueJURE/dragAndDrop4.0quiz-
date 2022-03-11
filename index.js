@@ -1,6 +1,6 @@
 const questionQuiz = document.querySelector(".question");
 const answerChoices = document.querySelector(".answerchoices");
-const allChoices = Array.from(document.querySelector(".answerchoices").children)
+const allChoices = Array.from(document.querySelector(".answerchoices").children);
 const choiceA = document.querySelector(".choiceA");
 const choiceB = document.querySelector(".choiceB");
 const choiceC = document.querySelector(".choiceC");
@@ -11,14 +11,7 @@ const answerSection = document.querySelector(".answerSection");
 const counter = document.querySelector(".counter");
 const timerBar = document.querySelector(".timerBar");
 const finalScore = document.querySelector(".finalScore");
-const parent = document.querySelector(".parent")
-console.log(answerSection)
-
-
-
-
-
-
+const parent = document.querySelector(".parent");
 
 let questions = [
 
@@ -64,26 +57,31 @@ let lastQuestion = questions.length - 1;
 let activeQuestion = 0;
 let count = 0;
 let score = 0;
+let x = 0;
 let timeUp = 10;
 let timerBarLength = 800;
 let unitBar = timerBarLength / timeUp;
 let dragged;
 
-start.addEventListener("click", function() {
+start.addEventListener("click", startQuiz)
+
+function startQuiz() {
   start.style.visibility = "hidden";
   parent.style.visibility = "visible";
-})
-
+  renderQuestion();
+  progressBar();
+  setInterval(timerBarFunction, 1000);
+  setInterval(counterFunction, 1000);
+}
 
 function timerBarFunction() {
   if(count < timeUp) {
     timerBar.style.width = `${count*unitBar}px`
+    count++;
   } else {
     count = 0;
   }
 }
-
-setInterval(timerBarFunction, 1000)
 
 function progressBar() {
   for(var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
@@ -91,19 +89,17 @@ function progressBar() {
   }
 }
 
-progressBar();
-
 function counterFunction() {
-  if(count <= timeUp) {
-    counter.innerHTML = count;
-    count++;
+  if(x <= timeUp) {
+    counter.innerHTML = x;
+    x++;
   } else {
-    count = 0;
+    x = 0;
+    nextQuestion();
+    wrongAnswer();
   }
 }
 
-setInterval(counterFunction, 1000);
-//
 function renderQuestion() {
   let q = questions[activeQuestion]
   choiceA.innerHTML = q.choiceA;
@@ -113,7 +109,7 @@ function renderQuestion() {
   // document.body.style.backgroundImage = q.questionImg
 }
 
-renderQuestion()
+
 
 questionQuiz.addEventListener("drag", function(e) {
 
