@@ -10,16 +10,11 @@ const choices = document.querySelectorAll(".choice");
 const answerSection = document.querySelector(".answerSection");
 const counter = document.querySelector(".counter");
 const timerBar = document.querySelector(".timerBar");
-console.log(allChoices)
+const finalScore = document.querySelector("finalScore");
+console.log(answerSection)
 
 
 
-let activeQuestion = 0;
-let count = 0;
-let timeUp = 10;
-let timerBarLength = 800;
-let unitBar = timerBarLength / timeUp;
-let dragged;
 
 
 
@@ -64,6 +59,14 @@ let questions = [
 
 ]
 
+let lastQuestion = questions.length - 1;
+let activeQuestion = 0;
+let count = 0;
+let score = 0;
+let timeUp = 10;
+let timerBarLength = 800;
+let unitBar = timerBarLength / timeUp;
+let dragged;
 
 
 function timerBarFunction() {
@@ -155,9 +158,12 @@ function drop(e) {
   e.preventDefault()
   if(parseInt(e.target.innerHTML) !== questions[activeQuestion].correctAnswer) {
     wrongAnswer();
+    nextQuestion()
   } else {
-    e.target.appendChild(dragged)
     correctAnswer();
+    score++;
+    e.target.appendChild(dragged)
+    nextQuestion()
   }
 }
 
@@ -166,4 +172,21 @@ function correctAnswer() {
 }
 function wrongAnswer() {
   document.getElementById(activeQuestion).style.backgroundColor = "red";
+}
+
+function nextQuestion() {
+  count = 0;
+  if(activeQuestion < lastQuestion) {
+    activeQuestion++
+    renderQuestion();
+  } else {
+    renderScore();
+  }
+}
+
+
+
+function renderScore() {
+  finalScore.innerHTML = score;
+  finalScore.style.visibility = "visible";
 }

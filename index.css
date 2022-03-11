@@ -13,6 +13,10 @@ body {
   justify-items: center;
 }
 
+.finalScore {
+  visibility: hidden;
+}
+
 
 .quizSection {
   display: grid;
