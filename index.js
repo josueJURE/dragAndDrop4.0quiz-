@@ -12,6 +12,7 @@ const counter = document.querySelector(".counter");
 const timerBar = document.querySelector(".timerBar");
 const finalScore = document.querySelector(".finalScore");
 const parent = document.querySelector(".parent");
+console.log(quizSection)
 
 let questions = [
 
@@ -164,8 +165,10 @@ function drop(e) {
   } else {
     correctAnswer();
     score++;
-    e.target.appendChild(dragged)
-    nextQuestion()
+    e.target.appendChild(dragged);
+    nextQuestion();
+    newElement();
+
   }
 }
 
@@ -189,4 +192,13 @@ function nextQuestion() {
 function renderScore() {
   finalScore.innerHTML = score;
   finalScore.style.visibility = "visible";
+}
+
+function newElement() {
+  let newDiv = document.createElement("div");
+  newDiv.setAttribute("class", "question");
+  newDiv.setAttribute("draggable", "true");
+  newDiv.innerHTML = questions[activeQuestion].question;
+  // parent.appendChild(newDiv);
+  document.body.insertBefore(newDiv, answerChoices.nextSibling);
 }
