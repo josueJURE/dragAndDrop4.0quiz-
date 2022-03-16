@@ -13,6 +13,9 @@ const timerBar = document.querySelector(".timerBar");
 const finalScore = document.querySelector(".finalScore");
 const parent = document.querySelector(".parent");
 console.log(quizSection)
+console.log(quizSection.children[0])
+
+
 
 let questions = [
 
@@ -69,6 +72,10 @@ start.addEventListener("click", startQuiz)
 function startQuiz() {
   start.style.visibility = "hidden";
   parent.style.visibility = "visible";
+  multipleFunction();
+}
+
+multipleFunction = ()=> {
   renderQuestion();
   progressBar();
   setInterval(timerBarFunction, 1000);
@@ -174,6 +181,7 @@ function drop(e) {
 
 function correctAnswer() {
   document.getElementById(activeQuestion).style.backgroundColor = "green";
+  // newElement();
 }
 function wrongAnswer() {
   document.getElementById(activeQuestion).style.backgroundColor = "red";
@@ -200,5 +208,5 @@ function newElement() {
   newDiv.setAttribute("draggable", "true");
   newDiv.innerHTML = questions[activeQuestion].question;
   // parent.appendChild(newDiv);
-  document.body.insertBefore(newDiv, answerChoices.nextSibling);
+   questionQuiz.insertBefore(newDiv, answerSection);
 }
